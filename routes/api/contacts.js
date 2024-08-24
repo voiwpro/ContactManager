@@ -59,9 +59,19 @@ router.put("/:id", jsonParser, function (req, res) {
 // @route GET api/contacts/:id
 // @description Delete Contact by id
 // @access Public
+// router.delete("/:id", jsonParser, function (req, res) {
+//   Contact.findByIdAndRemove(req.params.id, req.body)
+//     .then((Contact) => res.json({ mgs: "Contact entry deleted successfully" }))
+//     .catch((err) => res.status(404).json({ error: "No such a Contact" }));
+// });
+
+
+// @route DELETE api/contacts/:id
+// @description Delete Contact by id
+// @access Public
 router.delete("/:id", jsonParser, function (req, res) {
-  Contact.findByIdAndRemove(req.params.id, req.body)
-    .then((Contact) => res.json({ mgs: "Contact entry deleted successfully" }))
+  Contact.findByIdAndDelete(req.params.id)
+    .then((contact) => res.json({ msg: "Contact entry deleted successfully" }))
     .catch((err) => res.status(404).json({ error: "No such a Contact" }));
 });
 

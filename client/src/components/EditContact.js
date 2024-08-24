@@ -6,26 +6,36 @@ class EditContact extends React.Component {
     super(props);
     const location = window.location;
     const _id = location.pathname.substring(
-      location.pathname.lastIndexOf("/") + 1,
+      location.pathname.lastIndexOf("/") + 1
     );
     const { name, email } = props.contacts.find(
-      (contacts) => contacts._id === _id,
+      (contact) => contact._id === _id
     );
     this.state = {
       _id: _id,
       name: name,
       email: email,
+      updateSuccess: false, // To track update success
     };
   }
+
   update = (e) => {
     e.preventDefault();
     if (this.state.name === "" || this.state.email === "") {
-      alert("All Field are Mandatory");
+      alert("All fields are mandatory");
       return;
     }
     this.props.updateContactHandler(this.state);
-    this.setState({ _id: "", name: "", email: "" });
+    this.setState({ updateSuccess: true }); // Set update success to true
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.updateSuccess && !prevState.updateSuccess) {
+      alert("Contact updated successfully!");
+      this.setState({ updateSuccess: false }); // Reset update success after showing alert
+    }
+  }
+
   render() {
     return (
       <div className="container-contact2">
