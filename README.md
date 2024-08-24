@@ -1,8 +1,5 @@
 # Contact Manager
 
-#### Project deployed link -> [Contact Manager](https://contact-manager-mern-cg19.onrender.com/)
-
----
 
 ## :pencil: About The Project
 
